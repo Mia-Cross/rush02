@@ -16,9 +16,10 @@ SRCSDIR		=  srcs
 
 OBJDIR		= .obj
 
-SRCS		= main.c
+SRCS		= main.c utils.c parse_dict.c linked_list.c \
+				convert_value.c
 
-OBJS		= $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
+OBJS		= $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
 DPDCS		= $(OBJS:.o=.d)
 
@@ -28,7 +29,7 @@ CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 
 RM			= rm -f
 
-CC			= g++
+CC			= gcc
 
 opti:
 	@make -j all
@@ -54,7 +55,7 @@ $(NAME) : $(OBJS) $(LIB)
 $(OBJDIR) :
 			@mkdir -p .obj 
 
-$(OBJDIR)/%.o : $(SRCSDIR)/%.cpp | $(OBJDIR)
+$(OBJDIR)/%.o : $(SRCSDIR)/%.c | $(OBJDIR)
 			@${CC} ${CFLAGS} -c $< -o $@
 
 clean :
