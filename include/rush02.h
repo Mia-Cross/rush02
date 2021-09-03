@@ -4,6 +4,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <fcntl.h>
 
 // struct s_dict;
@@ -28,14 +29,22 @@ void show_dic(t_dict *head);
 size_t ft_strlen(char *str);
 unsigned long long ft_atoull(char *str);
 char *ft_append(char *str, char c, int need_free);
+char *ft_strcat_space(char *s1, char *s2);
 void exit_error(char *str);
-char *get_key(int fd);
-char *get_word(int fd);
+char *parse_key(int fd);
+char *parse_word(int fd);
 void convert_value(char *str, t_dict *dict);
-char *search_key(char *key, int pos, t_dict *head);
+char *search_key_str(char *key, t_dict *head);
+char *search_key_unit(char key, char *nb, t_dict *head);
+char *search_key_hund(char key, t_dict *head);
+char *search_key_tens(char *key, t_dict *head);
 void ft_bzero(void *ptr, size_t size);
 char *search_key_by_length(size_t nb_len, t_dict *head);
 void ft_putstr(char *str);
 char *sub_three(char *str, size_t nb);
+char *search_key_pos(char *str, size_t i, t_dict *head);
+bool is_only_zeros(char *str);
+bool is_preceded_by_one(char *str, size_t i);
+char *is_right_key(char *str, size_t i, t_dict *elem);
 
 #endif

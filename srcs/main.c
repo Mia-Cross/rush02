@@ -20,5 +20,6 @@ int main(int ac, char **av)
     dict = parse_dict(dict_name);
     //show_dic(dict);
     convert_value(av[ac - 1], dict);
+    write(1, "\n", 1);
     clear_list(dict);
 }

@@ -33,9 +33,12 @@ char *adjust_as_thirds(char *str)
     size_t j;
     size_t rest;
 
-    rest = ft_strlen(str) % 3;
-    if (!rest)
-        return (str);
+    rest = 3 - ft_strlen(str) % 3;
+    if (rest == 3)
+        rest = 0;
+    // printf("rest = %ld, sizeofmalloc = %ld\t", rest, ft_strlen(str) + rest + 1);
+    // if (!rest)
+    //     return (str);
     if (!(new = malloc(sizeof(char) * (ft_strlen(str) + rest + 1))))
         exit_error("malloc=== Error\n");
     i = 0;
@@ -45,29 +48,81 @@ char *adjust_as_thirds(char *str)
     while (str[i])
         new[j++] = str[i++];
     new[j] = '\0';
-    free(str);
+    // printf("[%s] to [%s]\n", str, new);
+    //free(str);
     return (new);
 }
 
 void convert_value(char *str, t_dict *dict)
 {
-    // char *word;
-    char *sub;
+    char *word;
+    size_t pos;
+    // char *sub;
     size_t i;
 
     if (!str)
         exit_error("2.0=== Error\n");
-    str = adjust_as_thirds(str);
+    // printf("[%p\n", str);
+    // str = adjust_as_thirds(str);
+    
+    // printf("nb tours -> %ld\n", ft_strlen(str) / 3);
     i = 0;
-    while (i < ft_strlen(str) / 3)
+    // en fait toutes les opes que je fais dans la boucle je dois aussi les faire pour le premier;
+    while (i < ft_strlen(str))
     {
-        sub = sub_three(str, i);
-        ft_putstr(sub);
-        ft_putstr(search_key(&sub[0], 0, dict));
-        ft_putstr(search_key(&sub[1], 1, dict));
-        ft_putstr(search_key(&sub[2], 2, dict));
-        ft_putstr(search_key_by_length(ft_strlen(str), dict));
-        free(sub);
+        if (i != 0)
+            write(1, " ", 1);
+        word = search_key_pos(str, i, dict);
+        pos = (ft_strlen(str) - 1 - i) % 3;
+        ft_putstr(word);
+        if (pos == 2 && str[i] != '0')
+        {
+            write(1, " <100>", 5);
+            ft_putstr(search_key_str("100", dict));
+        }
+        if (pos == 0)
+        {
+            write(1, " *3*", 4);
+            ft_putstr(search_key_by_length(ft_strlen(str) - i, dict));
+        }
+        // free(word);
         i++;
     }
+        
+    // while (i < ft_strlen(str) / 3)
+    // {
+    //     sub = sub_three(str, i);
+    //     // ft_putstr(sub);
+    //     word = search_key_hund(sub[0], dict);
+    //     if (word)
+    //     {
+    //         ft_putstr(word);
+    //         write(1, " ", 1);
+    //         ft_putstr(search_key_str("100", dict));
+    //         write(1, " ", 1);
+    //     }
+    //     word = search_key_tens(&sub[1], dict);
+    //     if (word)
+    //     {
+    //         ft_putstr(word);
+    //         write(1, " ", 1);
+    //     }
+    //     word = search_key_unit(sub[2], str, dict);
+    //     if (word)
+    //     {
+    //         ft_putstr(word);
+    //         write(1, " ", 1);
+    //     }
+    //     word = search_key_by_length(ft_strlen(str) - (i * 3), dict);
+    //     if (word)
+    //     {
+    //         ft_putstr(word);
+    //         write(1, " ", 1);
+    //     }
+    //     free(sub);
+    //     i++;
+    // }
+    // str -= (i * 3);
+    // printf("%p]\n", str);
+    // free(str);
 }
