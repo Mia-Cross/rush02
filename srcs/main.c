@@ -16,10 +16,9 @@ int main(int ac, char **av)
     else if (ac == 3)
         dict_name = av[2];
     else
-        exit_error("0===Error\n");
+        exit_error("Error\n");
     dict = parse_dict(dict_name);
-    //show_dic(dict);
+    show_dic(dict);
     convert_value(av[ac - 1], dict);
-    write(1, "\n", 1);
     clear_list(dict);
 }

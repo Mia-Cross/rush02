@@ -17,7 +17,7 @@ SRCSDIR		=  srcs
 OBJDIR		= .obj
 
 SRCS		= main.c utils.c parse_dict.c linked_list.c \
-				convert_value.c
+				convert_value.c search_key.c display.c
 
 OBJS		= $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
