@@ -22,7 +22,6 @@ void add_to_list(t_dict *head, t_dict *to_add)
 void clear_list(t_dict *head)
 {
     t_dict *to_free;
-    // int i = 1;
 
     while (head && head->next)
     {
@@ -30,7 +29,6 @@ void clear_list(t_dict *head)
         head = head->next;
         free(to_free->key);
         free(to_free->word);
-        // printf("erasing entry number %d\n", i++);
         free(to_free);
     }
     free(head->key);
@@ -40,7 +38,7 @@ void clear_list(t_dict *head)
 
 void show_dic(t_dict *head)
 {
-    while (head && head->next)
+    while (head)
     {
         printf("[%s] -> [%s]\n", head->key, head->word);
         head = head->next;

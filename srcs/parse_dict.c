@@ -53,17 +53,12 @@ t_dict *parse_dict(char *dict_name)
     t_dict *elem;
     t_dict *head;
     int fd;
-    // int i = 1;
 
     if ((fd = open(dict_name, O_RDONLY)) == -1)
         exit_error("1.0===Dict Error\n");
     head = new_entry(fd);
-    // printf("entry number %d\n", i++);
     while ((elem = new_entry(fd)) && elem->key)
-    {
-        // printf("entry number %d\n", i++);
         add_to_list(head, elem);
-    }
     free(elem);
     return (head);
 }
