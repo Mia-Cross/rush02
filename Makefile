@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: schene <schene@student.42.fr>              +#+  +:+       +#+         #
+#    By: lemarabe <lemarabe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 14:21:19 by schene            #+#    #+#              #
-#    Updated: 2021/06/24 11:42:41 by schene           ###   ########.fr        #
+#    Updated: 2022/12/29 15:29:34 by lemarabe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(NAME) : $(OBJS) $(LIB)
 	@printf "[$(NAME)] "
 	@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIB}
 	@echo Compiled $(NAME) successfully !
-	@echo $(NAME) > .gitignore
+	@echo $(NAME) >> .gitignore
 
 #${NAME}:	${OBJS} $(LIB)
 #			@echo "✅"

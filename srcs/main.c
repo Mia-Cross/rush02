@@ -33,6 +33,6 @@ int main(int ac, char **av)
         exit(exit_error("Error\n"));
     dict = parse_dict(dict_name);
     // show_dic(dict);
-    convert_value(av[ac - 1], dict);
+    convert_value(av[1], dict);
     clear_list(dict);
 }
